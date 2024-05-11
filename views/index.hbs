@@ -1,0 +1,25 @@
+{{>header}}
+<div class="container mt-4">
+  <form class="row g-3" method="POST" action="/store">
+    <div class="col-10">
+      <input type="text" class="form-control" placeholder="Enter Todo" name="todo">
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary mb-3"> Add </button>
+    </div>
+  </form>
+  <ul class="list-group">
+    {{#each tdoos}}
+    <li class="list-group-item d-flex justify-content-between">{{this.todo}}
+      <div>
+        <a href="/edit/{{this._id}}" class="btn btn-warning me-2" >Edit</a>
+        <button class="btn btn-danger"  onclick="document.getElementById('tdoos{{this._id}}').submit()">Delete</button>
+        <form action="/destroy/{{this._id}}" id="tdoos{{this._id}}" method="POST"></form>
+      </div>
+      {{/each}}
+
+    </li>
+  </ul>
+
+</div>
+{{>footer}}
